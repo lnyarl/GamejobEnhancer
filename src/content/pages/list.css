@@ -73,7 +73,16 @@ body[data-gj-page="list"] .tblList .info span {
   margin-right: 10px;
 }
 
-/* Auxiliary text muted in light theme — keeps visual hierarchy after sizing up. */
+/* Push the site's faded greys (#888) up to body text color so the meta line
+   isn't a wash. Brand-coloured links/labels are left alone. */
+:root[data-gj-theme="light"] body[data-gj-page="list"] :where(
+  .tblList .info span,
+  .tblList .date
+) {
+  color: var(--gj-text) !important;
+}
+
+/* Auxiliary text gets a more legible muted (still distinct from body). */
 :root[data-gj-theme="light"] body[data-gj-page="list"] :where(
   .tblList .modifyDate,
   .tplSlt,

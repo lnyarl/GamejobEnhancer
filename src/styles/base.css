@@ -55,16 +55,5 @@ body[data-gj-page] {
   color: var(--gj-text);
 }
 
-/* GLOBAL DEFAULT — light theme contrast push for the site's faded greys.
-   Skipped in dark theme since the site keeps a white background that would
-   clash with bright text. Ad areas exempt. */
-:root[data-gj-theme="light"] body[data-gj-page]
-  :where(a, p, span, li, h1, h2, h3, h4, h5, h6, strong, em, b, i, label, button, td, th, dd, dt) {
-  color: var(--gj-text) !important;
-}
-
-:root[data-gj-theme="light"] body[data-gj-page]
-  :is(#adMainLeft, #topWrapAd, .adbannerWrap)
-  :where(a, p, span, li, h1, h2, h3, h4, h5, h6, strong, em, b, i, label, button, td, th, dd, dt) {
-  color: revert !important;
-}
+/* No global color override. Pages override the specific selectors that the
+   site renders in unreadably faded grey; the site's brand reds/blues stay. */

@@ -35,3 +35,12 @@ body[data-gj-page="recruit-hub"] .gj-filter::placeholder {
 
 /* Section titles ("직종별", "게임분야별", "게임장르별") are <h3> already
    handled by base.css's heading scale; no override needed here. */
+
+/* Push the site's faded grey (#888) category links up to body color in
+   light theme. Brand-coloured links/icons (if any) stay as-is. */
+:root[data-gj-theme="light"] body[data-gj-page="recruit-hub"] :where(
+  .giMenuCell ul li a,
+  .giIcoBx li a
+) {
+  color: var(--gj-text) !important;
+}

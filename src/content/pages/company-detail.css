@@ -1,0 +1,26 @@
+/*
+ * Company detail (/Company/Detail?M=*) — page-specific deltas.
+ * Font sizes are bumped page-wide by JS (+2 px per element, ad areas excluded).
+ * CSS here carries only non-size deltas (contrast, section dividers, spacing).
+ */
+
+/* Light theme contrast: push faded grey labels to body color so the meta
+   block (대표자명/설립년도/...) reads clearly. Brand-coloured tabs untouched. */
+:root[data-gj-theme="light"] body[data-gj-page="company-detail"] :where(
+  dl dt.tit,
+  .boothList .info span
+) {
+  color: var(--gj-text) !important;
+}
+
+/* Section title underline. */
+body[data-gj-page="company-detail"] :where(h3.corpTit, h4.corpTit) {
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--gj-border);
+  margin-bottom: 16px;
+}
+
+/* Breathing room. */
+body[data-gj-page="company-detail"] .corpInfoView {
+  line-height: 1.6;
+}

@@ -1,0 +1,290 @@
+/*
+ * Recruit detail (/Recruit/GI_Read/View?GI_No=*) — page-specific deltas.
+ * Sidebar (article.content__recruit-data) is already sticky; we augment its
+ * meta list with body fields. A peek-style sub-nav sits below the sticky
+ * tab head — clicking an item opens a popover with that section's content
+ * (no forced scrolling).
+ */
+
+/* ---- Sub-nav bar (lives INSIDE .view-detail-head so it sticks together
+   with the parent tab bar — no gap, no offset drift).
+   `position: relative` so the popover anchors to the sub-nav itself, not the
+   parent tab head whose height the site may pin to 53px. ---- */
+body[data-gj-page="recruit-detail"] .view-detail-head .gj-subnav {
+  position: relative;
+  background-color: var(--gj-bg);
+  border-top: 1px solid var(--gj-border);
+}
+
+body[data-gj-page="recruit-detail"] .gj-subnav__inner {
+  display: flex;
+  gap: 4px;
+  padding: 10px 16px;
+  max-width: 1280px;
+  margin: 0 auto;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+body[data-gj-page="recruit-detail"] .gj-subnav__item {
+  flex-shrink: 0;
+  padding: 6px 12px;
+  font: inherit;
+  font-size: 14px;
+  color: var(--gj-text-muted);
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color 120ms, background-color 120ms;
+}
+
+body[data-gj-page="recruit-detail"] .gj-subnav__item:hover {
+  color: var(--gj-text);
+  background-color: var(--gj-surface-hover);
+}
+
+body[data-gj-page="recruit-detail"] .gj-subnav__item.is-active {
+  color: var(--gj-accent);
+  background-color: var(--gj-surface);
+}
+
+/* ---- Peek popover. left/width set inline by JS so it stops before the
+   fixed right sidebar (article.content__recruit-data). ---- */
+body[data-gj-page="recruit-detail"] .gj-subnav-popover {
+  display: none;
+  position: absolute;
+  top: 100%;
+  box-sizing: border-box;
+  max-height: 60vh;
+  overflow-y: auto;
+  padding: 24px 28px 28px;
+  background: var(--gj-bg);
+  border: 1px solid var(--gj-border);
+  border-radius: 8px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+}
+
+body[data-gj-page="recruit-detail"] .gj-subnav-popover.is-open {
+  display: block;
+}
+
+body[data-gj-page="recruit-detail"] .gj-subnav-popover__title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--gj-text);
+  margin: 0 0 14px;
+  padding-right: 36px;
+}
+
+body[data-gj-page="recruit-detail"] .gj-subnav-popover__content {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--gj-text);
+}
+
+/* ---------- Polish for cloned site markup inside the popover ---------- */
+
+body[data-gj-page="recruit-detail"] .gj-subnav-popover__content ul,
+body[data-gj-page="recruit-detail"] .gj-subnav-popover__content ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+body[data-gj-page="recruit-detail"] .gj-subnav-popover__content li {
+  margin: 0;
+}
+body[data-gj-page="recruit-detail"] .gj-subnav-popover__content dl {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 4px 16px;
+  align-items: baseline;
+  margin: 0;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--gj-border);
+}
+body[data-gj-page="recruit-detail"] .gj-subnav-popover__content dl:last-child {
+  border-bottom: none;
+}
+body[data-gj-page="recruit-detail"] .gj-subnav-popover__content dt {
+  font-weight: 600;
+  color: var(--gj-text-muted);
+}
+body[data-gj-page="recruit-detail"] .gj-subnav-popover__content dd {
+  margin: 0;
+  color: var(--gj-text);
+}
+body[data-gj-page="recruit-detail"] .gj-subnav-popover__content a {
+  color: var(--gj-accent);
+  text-decoration: none;
+}
+body[data-gj-page="recruit-detail"] .gj-subnav-popover__content a:hover {
+  text-decoration: underline;
+}
+
+/* 근무지역 — keep the site's own subway-line chip colors; just clean spacing. */
+body[data-gj-page="recruit-detail"] .gj-subnav-popover__content .job-workplace__list {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 8px;
+  padding: 8px 12px;
+  background: var(--gj-surface);
+  border-radius: 6px;
+}
+
+/* 복리후생 — 2-column grid, soft surface chips. */
+body[data-gj-page="recruit-detail"] .gj-subnav-popover__content .corp-benefits ul {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px 16px;
+}
+body[data-gj-page="recruit-detail"] .gj-subnav-popover__content .corp-benefits li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 14px;
+  background: var(--gj-surface);
+  border-radius: 8px;
+}
+body[data-gj-page="recruit-detail"] .gj-subnav-popover__content .corp-benefits .benefits-txt {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 14px;
+}
+body[data-gj-page="recruit-detail"] .gj-subnav-popover__content .corp-benefits .txt-color-gray {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--gj-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* 접수안내 — top time row as a strip, the rest as dl rows. */
+body[data-gj-page="recruit-detail"] .gj-subnav-popover__content .job-howtoapply__time {
+  display: flex;
+  gap: 32px;
+  padding: 14px 18px;
+  background: var(--gj-surface);
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+body[data-gj-page="recruit-detail"] .gj-subnav-popover__content .job-howtoapply__time dl {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 0;
+  border: none;
+  grid-template-columns: none;
+}
+body[data-gj-page="recruit-detail"] .gj-subnav-popover__content .job-howtoapply__time dt {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+body[data-gj-page="recruit-detail"] .gj-subnav-popover__content .job-howtoapply__time dd {
+  font-weight: 600;
+}
+
+/* 기업정보 — header row (logo + name + 연봉정보 link), dl body. */
+body[data-gj-page="recruit-detail"] .gj-subnav-popover__content .job-corpinfo__head {
+  padding-bottom: 16px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid var(--gj-border);
+}
+body[data-gj-page="recruit-detail"] .gj-subnav-popover__content .job-corpinfo__head ul {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+body[data-gj-page="recruit-detail"] .gj-subnav-popover__content .logo-img img {
+  max-height: 48px;
+  width: auto;
+  display: block;
+}
+body[data-gj-page="recruit-detail"] .gj-subnav-popover__content .corp-name {
+  font-size: 17px;
+  font-weight: 700;
+  margin-top: 6px;
+}
+body[data-gj-page="recruit-detail"] .gj-subnav-popover__content .button-pay .pay-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 12px;
+  background: var(--gj-surface);
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* 기업뉴스 — list-card form, click-friendly hit area. */
+body[data-gj-page="recruit-detail"] .gj-subnav-popover__content .job-news-wrap {
+  display: flex;
+  flex-direction: column;
+}
+body[data-gj-page="recruit-detail"] .gj-subnav-popover__content .job-news__article {
+  border-bottom: 1px solid var(--gj-border);
+}
+body[data-gj-page="recruit-detail"] .gj-subnav-popover__content .job-news__article:last-child {
+  border-bottom: none;
+}
+body[data-gj-page="recruit-detail"] .gj-subnav-popover__content .job-news__article > a {
+  display: block;
+  padding: 14px 16px;
+  color: inherit;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: background-color 120ms;
+}
+body[data-gj-page="recruit-detail"] .gj-subnav-popover__content .job-news__article > a:hover {
+  background-color: var(--gj-surface-hover);
+}
+body[data-gj-page="recruit-detail"] .gj-subnav-popover__content .job-news__article .info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+body[data-gj-page="recruit-detail"] .gj-subnav-popover__content .job-news__article .tit {
+  display: block;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--gj-text);
+}
+body[data-gj-page="recruit-detail"] .gj-subnav-popover__content .job-news__article .desc {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--gj-text-muted);
+}
+body[data-gj-page="recruit-detail"] .gj-subnav-popover__content .job-news__article .date {
+  font-size: 12px;
+  color: var(--gj-text-muted);
+}
+
+body[data-gj-page="recruit-detail"] .gj-subnav-popover__close {
+  position: absolute;
+  top: 14px;
+  right: 18px;
+  width: 32px;
+  height: 32px;
+  font-size: 22px;
+  line-height: 1;
+  border: none;
+  background: transparent;
+  color: var(--gj-text-muted);
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background-color 120ms, color 120ms;
+}
+
+body[data-gj-page="recruit-detail"] .gj-subnav-popover__close:hover {
+  background: var(--gj-surface-hover);
+  color: var(--gj-text);
+}
