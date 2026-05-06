@@ -1,8 +1,9 @@
 {
   "manifest_version": 3,
   "name": "Gamejob Enhancer",
+  "short_name": "Gamejob Enhancer",
   "version": "0.1.0",
-  "description": "Modernize gamejob.co.kr UI/UX",
+  "description": "gamejob.co.kr 사이트의 가독성과 사용성을 개선합니다 — 폰트 크기 조정, 사이드바 메타 보강, 본문 미리보기, 채용관 접기 등.",
   "options_ui": {
     "page": "src/options/index.html",
     "open_in_tab": true
