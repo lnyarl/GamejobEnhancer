@@ -1,31 +1,51 @@
 /*
  * Job listings page (/Recruit/joblist*) — page-specific deltas on top of base.css globals.
- * Only put EXCEPTIONS here (auxiliary sizes, hierarchy bumps, muted colors that
- * differ from the global default).
+ * No font-size overrides — the site's px hierarchy stays intact.
  */
 
-/* Job title sits one notch above body. */
-body[data-gj-page="list"] .tblList .tit a,
-body[data-gj-page="list"] .tblList .tit a strong {
-  font-size: calc(var(--gj-font-size) * 1.15) !important;
-}
-
-/* Site's intentional small auxiliary text — keep smaller than body but still
-   scale with the slider so visual hierarchy survives. */
-body[data-gj-page="list"] :where(
-  .tblList .modifyDate,
-  .totalJobcnt,
-  .tplSlt,
-  #duty_step2_1_ly > li > label > span
-) {
-  font-size: calc(var(--gj-font-size) * 0.8) !important;
-}
-
-/* Auxiliary text stays muted-but-legible in the light theme. */
+/* Auxiliary text in light theme — keep slightly muted so visual hierarchy survives. */
 :root[data-gj-theme="light"] body[data-gj-page="list"] :where(
   .tblList .modifyDate,
   .tplSlt,
   #devSearchForm label
 ) {
   color: var(--gj-text-muted) !important;
+}
+
+/* Collapsible booth sections (Sword/Shield/Armor 채용관). */
+body[data-gj-page="list"] article.boothList .gj-collapse-toggle {
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 180ms ease, padding 180ms ease, border-color 180ms ease;
+}
+
+body[data-gj-page="list"] article.boothList .gj-collapse-toggle:hover {
+  background-color: var(--gj-surface-hover);
+}
+
+body[data-gj-page="list"] article.boothList .gj-collapse-arrow {
+  display: inline-block;
+  margin-left: 0.5em;
+  font-size: 0.85em;
+  color: var(--gj-accent);
+  transition: transform 200ms ease, color 200ms ease;
+}
+
+/* Collapsed state: header gets a clear "this is folded" affordance. */
+body[data-gj-page="list"] article.boothList.gj-collapsed .gj-collapse-arrow {
+  transform: rotate(-90deg);
+}
+
+body[data-gj-page="list"] article.boothList.gj-collapsed > h3.boothTit {
+  background-color: var(--gj-surface);
+  border-left: 4px solid var(--gj-accent);
+  padding: 10px 14px;
+  border-radius: 4px;
+  margin: 0;
+  opacity: 0.85;
+}
+
+/* Hide everything in the booth except the header when collapsed. */
+body[data-gj-page="list"] article.boothList.gj-collapsed > *:not(h3.boothTit) {
+  display: none !important;
 }

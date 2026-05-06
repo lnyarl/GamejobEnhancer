@@ -1,7 +1,7 @@
 body {
   margin: 0;
   font-family: var(--gj-font-family);
-  font-size: var(--gj-font-size);
+  font-size: 14px;
   background-color: var(--gj-bg);
   color: var(--gj-text);
   min-height: 100vh;

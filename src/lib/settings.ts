@@ -4,14 +4,12 @@ export interface Settings {
   enabled: boolean
   theme: ThemeName
   fontFamily: string
-  fontSize: number
 }
 
 export const DEFAULT_SETTINGS: Settings = {
   enabled: true,
   theme: 'light',
   fontFamily: 'system-ui, "Pretendard", "Apple SD Gothic Neo", sans-serif',
-  fontSize: 14,
 }
 
 export const FONT_FAMILY_OPTIONS: { label: string; value: string }[] = [

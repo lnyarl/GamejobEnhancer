@@ -32,8 +32,6 @@ async function main(): Promise<void> {
   const enabledEl = $<HTMLInputElement>('#enabled')
   const themeEl = $<HTMLSelectElement>('#theme')
   const fontFamilyEl = $<HTMLSelectElement>('#fontFamily')
-  const fontSizeEl = $<HTMLInputElement>('#fontSize')
-  const fontSizeValueEl = $<HTMLSpanElement>('#fontSizeValue')
   const resetEl = $<HTMLButtonElement>('#reset')
 
   fillSelect(themeEl, THEME_OPTIONS)
@@ -43,8 +41,6 @@ async function main(): Promise<void> {
     enabledEl.checked = s.enabled
     themeEl.value = s.theme
     fontFamilyEl.value = s.fontFamily
-    fontSizeEl.value = String(s.fontSize)
-    fontSizeValueEl.textContent = `${s.fontSize}px`
     applySettings(s)
   }
 
@@ -58,11 +54,6 @@ async function main(): Promise<void> {
   })
   fontFamilyEl.addEventListener('change', () => {
     void setSettings({ fontFamily: fontFamilyEl.value })
-  })
-  fontSizeEl.addEventListener('input', () => {
-    const v = Number(fontSizeEl.value)
-    fontSizeValueEl.textContent = `${v}px`
-    void setSettings({ fontSize: v })
   })
 
   resetEl.addEventListener('click', async () => {

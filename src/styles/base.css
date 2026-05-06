@@ -2,18 +2,18 @@
  * Theme variables. Add a new palette by appending a `:root[data-gj-theme="<name>"] { ... }` block.
  * Page-specific styles should reference these vars only — no hardcoded colors.
  *
- * Layering convention:
- *   - This file holds GLOBAL DEFAULTS that apply across every gamejob page
- *     (font-family, font-size scaling, light-theme contrast push, ad-area exemptions).
- *   - Page modules (list.css, recruit-hub.css, resume.css, …) layer EXCEPTIONS on top:
- *     specific selectors that need a different size/color for that page only
- *     (counters, modify-date hints, hierarchy bumps, etc.).
- *   - Don't add page-specific selectors here.
+ * Kill switch design: when the extension is disabled, the content script removes
+ * `body.dataset.gjPage`, so every `body[data-gj-page="..."] { ... }` selector — including
+ * the rule below — stops matching, and the page reverts to its native styling.
+ *
+ * Font-size policy: we don't override font sizes globally. Each page module
+ * may force a specific selector if a particular site rule is unreadable, but
+ * heading hierarchy and intentional small captions are left to the site.
+ * Users zoom the whole page with Chrome (Ctrl+/Ctrl-) when they need bigger text.
  */
 
 :root {
   --gj-font-family: system-ui, "Pretendard", "Apple SD Gothic Neo", sans-serif;
-  --gj-font-size: 14px;
 
   --gj-radius-sm: 6px;
   --gj-radius-md: 10px;
@@ -51,34 +51,13 @@
 
 body[data-gj-page] {
   font-family: var(--gj-font-family);
-  font-size: var(--gj-font-size);
   background-color: var(--gj-bg);
   color: var(--gj-text);
 }
 
-/* GLOBAL DEFAULT — user's font-size slider scales body text everywhere.
-   Heading hierarchy preserved by proportional bumps. Pages override specific
-   selectors (auxiliary text, intentional small captions) in their own files. */
-body[data-gj-page]
-  :where(p, a, span, li, td, th, label, button, dd, dt, strong, em, b, i, small) {
-  font-size: var(--gj-font-size) !important;
-}
-body[data-gj-page] h1 { font-size: calc(var(--gj-font-size) * 1.6) !important; }
-body[data-gj-page] h2 { font-size: calc(var(--gj-font-size) * 1.35) !important; }
-body[data-gj-page] h3 { font-size: calc(var(--gj-font-size) * 1.15) !important; }
-body[data-gj-page] h4 { font-size: calc(var(--gj-font-size) * 1.05) !important; }
-body[data-gj-page] h5 { font-size: var(--gj-font-size) !important; }
-body[data-gj-page] h6 { font-size: calc(var(--gj-font-size) * 0.9) !important; }
-
-/* Don't restyle ad banner text. */
-body[data-gj-page]
-  :is(#adMainLeft, #topWrapAd, .adbannerWrap)
-  :where(p, a, span, li, h1, h2, h3, h4, h5, h6, strong, em, b, i, label, button, td, th, dd, dt, small) {
-  font-size: revert !important;
-}
-
-/* GLOBAL DEFAULT — light theme contrast push. Skipped in dark theme since the
-   site keeps a white background that would clash with bright text. Ad areas exempt. */
+/* GLOBAL DEFAULT — light theme contrast push for the site's faded greys.
+   Skipped in dark theme since the site keeps a white background that would
+   clash with bright text. Ad areas exempt. */
 :root[data-gj-theme="light"] body[data-gj-page]
   :where(a, p, span, li, h1, h2, h3, h4, h5, h6, strong, em, b, i, label, button, td, th, dd, dt) {
   color: var(--gj-text) !important;
