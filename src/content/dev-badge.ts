@@ -9,6 +9,7 @@ export interface BadgeState {
 }
 
 export function mountDevBadge(state: BadgeState): void {
+  if (!__GJ_DEV__) return
   if (document.getElementById(ID)) {
     updateDevBadge(state.enabled)
     return
@@ -33,6 +34,7 @@ export function mountDevBadge(state: BadgeState): void {
 }
 
 export function updateDevBadge(enabled: boolean): void {
+  if (!__GJ_DEV__) return
   const el = document.getElementById(ID)
   if (!el) return
   const pageId = (el.dataset.gjPageId ?? 'unknown') as PageId

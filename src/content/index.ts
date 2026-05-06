@@ -33,7 +33,7 @@ async function init(): Promise<void> {
   }
 
   // Dev badge: stays visible regardless of enabled state so the toggle is always reachable.
-  if (import.meta.env.DEV) {
+  if (__GJ_DEV__) {
     whenBodyReady(() =>
       mountDevBadge({
         pageId: detectPage(new URL(location.href)),
@@ -46,7 +46,7 @@ async function init(): Promise<void> {
     applySettings(s)
     if (s.enabled && !mounted) whenBodyReady(mount)
     else if (!s.enabled && mounted) unmount()
-    if (import.meta.env.DEV) updateDevBadge(s.enabled)
+    if (__GJ_DEV__) updateDevBadge(s.enabled)
   })
 
   if (settings.enabled) whenBodyReady(mount)
