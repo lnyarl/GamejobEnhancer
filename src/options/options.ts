@@ -3,9 +3,7 @@ import './options.css'
 import {
   DEFAULT_SETTINGS,
   FONT_FAMILY_OPTIONS,
-  THEME_OPTIONS,
   type Settings,
-  type ThemeName,
 } from '../lib/settings'
 import { getSettings, setSettings, onSettingsChange } from '../lib/storage'
 import { applySettings } from '../lib/theme'
@@ -30,16 +28,13 @@ function fillSelect(
 
 async function main(): Promise<void> {
   const enabledEl = $<HTMLInputElement>('#enabled')
-  const themeEl = $<HTMLSelectElement>('#theme')
   const fontFamilyEl = $<HTMLSelectElement>('#fontFamily')
   const resetEl = $<HTMLButtonElement>('#reset')
 
-  fillSelect(themeEl, THEME_OPTIONS)
   fillSelect(fontFamilyEl, FONT_FAMILY_OPTIONS)
 
   function reflect(s: Settings): void {
     enabledEl.checked = s.enabled
-    themeEl.value = s.theme
     fontFamilyEl.value = s.fontFamily
     applySettings(s)
   }
@@ -48,9 +43,6 @@ async function main(): Promise<void> {
 
   enabledEl.addEventListener('change', () => {
     void setSettings({ enabled: enabledEl.checked })
-  })
-  themeEl.addEventListener('change', () => {
-    void setSettings({ theme: themeEl.value as ThemeName })
   })
   fontFamilyEl.addEventListener('change', () => {
     void setSettings({ fontFamily: fontFamilyEl.value })
