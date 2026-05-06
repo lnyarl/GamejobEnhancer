@@ -1,54 +1,8 @@
 /*
- * Job listings page (/Recruit/joblist*) — page-specific deltas on top of base.css globals.
- * Site's typography is built around a 13px baseline. We rescale to a 15px baseline
- * and give rows more breathing room (line-height + row padding).
+ * Job listings page (/Recruit/joblist*) — page-specific deltas.
+ * Page-wide font sizing is handled by the JS bump in lib/font-bump.ts;
+ * this file only carries non-size deltas (color, spacing, booth toggle).
  */
-
-/* Body baseline (~13 → 15). */
-body[data-gj-page="list"] :where(
-  .tblList .info span,
-  #devSearchForm label,
-  #devSearchForm select,
-  #lnb .depth2 a,
-  .tabBx .tabs a
-) {
-  font-size: 15px !important;
-}
-
-/* Table column header (~12 → 14). */
-body[data-gj-page="list"] .tblList th {
-  font-size: 14px !important;
-}
-
-/* Mid-tier (~14 → 16): company name, deadline. */
-body[data-gj-page="list"] :where(
-  .tblList .company strong,
-  .tblList .date
-) {
-  font-size: 16px !important;
-}
-
-/* Headings (~16 → 18): job title, sidebar group titles. */
-body[data-gj-page="list"] :where(
-  .tblList .tit a,
-  .tblList .tit a strong,
-  #lnb .depth1
-) {
-  font-size: 18px !important;
-}
-
-/* Auxiliary captions (~12 → 13). */
-body[data-gj-page="list"] :where(
-  .tblList .modifyDate,
-  .tplSlt
-) {
-  font-size: 13px !important;
-}
-
-/* Smallest counter (~11 → 12). */
-body[data-gj-page="list"] .totalJobcnt {
-  font-size: 12px !important;
-}
 
 /* Breathing room — line-height + row padding so rows don't feel jammed. */
 body[data-gj-page="list"] .tblList {

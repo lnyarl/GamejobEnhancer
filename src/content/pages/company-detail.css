@@ -13,14 +13,12 @@
   color: var(--gj-text) !important;
 }
 
-/* Section title underline. */
-body[data-gj-page="company-detail"] :where(h3.corpTit, h4.corpTit) {
-  padding-bottom: 8px;
-  border-bottom: 1px solid var(--gj-border);
-  margin-bottom: 16px;
-}
-
 /* Breathing room. */
 body[data-gj-page="company-detail"] .corpInfoView {
   line-height: 1.6;
+}
+
+body[data-gj-page="company-detail"]
+  #content > div.corpSummary.cf > div.corpInfo > div:nth-child(3) > dl > dd:last-of-type {
+  display: inline-table !important;
 }

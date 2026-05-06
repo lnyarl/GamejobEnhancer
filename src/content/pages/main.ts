@@ -1,6 +1,5 @@
 import './main.css'
 
 export function transform(): void {
-  // Main-page DOM transforms (tag swaps, attribute cleanup, etc.) go here.
-  // Keep this file focused on this page only.
+  // Page-wide font bump runs from content/index.ts before route().
 }

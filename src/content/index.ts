@@ -3,6 +3,7 @@ import { getSettings, onSettingsChange } from '../lib/storage'
 import { applySettings } from '../lib/theme'
 import { detectPage, route } from './router'
 import { mountDevBadge, updateDevBadge } from './dev-badge'
+import { bumpFontSizesPageWide } from '../lib/font-bump'
 
 async function init(): Promise<void> {
   const settings = await getSettings()
@@ -12,6 +13,7 @@ async function init(): Promise<void> {
 
   const mount = (): void => {
     if (mounted) return
+    bumpFontSizesPageWide()
     route()
     mounted = true
   }
