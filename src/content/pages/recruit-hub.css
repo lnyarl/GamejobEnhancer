@@ -7,3 +7,29 @@ body[data-gj-page="recruit-hub"] #lnb {
   position: sticky;
   top: 44px;
 }
+
+/* Filter input injected at the top of #content. */
+body[data-gj-page="recruit-hub"] .gj-filter-wrap {
+  margin: 0 0 16px;
+}
+
+body[data-gj-page="recruit-hub"] .gj-filter {
+  width: 100%;
+  box-sizing: border-box;
+  font: inherit;
+  padding: 10px 14px;
+  border: 1px solid var(--gj-border);
+  border-radius: var(--gj-radius-sm);
+  background-color: var(--gj-bg);
+  color: var(--gj-text);
+  outline: none;
+  transition: border-color 120ms ease;
+}
+
+body[data-gj-page="recruit-hub"] .gj-filter:focus {
+  border-color: var(--gj-accent);
+}
+
+body[data-gj-page="recruit-hub"] .gj-filter::placeholder {
+  color: var(--gj-text-muted);
+}
