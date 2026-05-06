@@ -19,6 +19,13 @@
       "js": ["src/content/index.ts"],
       "run_at": "document_start",
       "all_frames": false
+    },
+    {
+      "matches": ["https://www.gamejob.co.kr/*"],
+      "js": ["src/content/alert-patch-main.ts"],
+      "run_at": "document_start",
+      "world": "MAIN",
+      "all_frames": false
     }
   ]
 }

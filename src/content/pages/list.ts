@@ -1,5 +1,11 @@
 import './list.css'
+import { interceptAlerts } from '../alert-intercept'
+import { showToast } from '../toast'
+
+let wired = false
 
 export function transform(): void {
-  // Listings-page DOM transforms go here.
+  if (wired) return
+  wired = true
+  interceptAlerts((msg) => showToast(msg))
 }
