@@ -1,32 +1,17 @@
 /*
- * Job listings page (/Recruit/joblist*) — page-specific overrides.
- * These selectors are audited from this page; sister pages (recruit-hub,
- * resume, main) decide for themselves. Don't broaden into base.css.
+ * Job listings page (/Recruit/joblist*) — page-specific deltas on top of base.css globals.
+ * Only put EXCEPTIONS here (auxiliary sizes, hierarchy bumps, muted colors that
+ * differ from the global default).
  */
 
-/* Body text: scale with the user's font-size slider. */
-body[data-gj-page="list"] :where(
-  .tblList th,
-  .tblList .tit a,
-  .tblList .company strong,
-  .tblList .info span,
-  .tblList .date,
-  #devSearchForm label,
-  #devSearchForm select,
-  #lnb .depth1,
-  #lnb .depth2 a,
-  .tabBx .tabs a
-) {
-  font-size: var(--gj-font-size) !important;
-}
-
-/* Job title gets a slight bump above body. */
+/* Job title sits one notch above body. */
 body[data-gj-page="list"] .tblList .tit a,
 body[data-gj-page="list"] .tblList .tit a strong {
   font-size: calc(var(--gj-font-size) * 1.15) !important;
 }
 
-/* Auxiliary text stays smaller than body, scaling with the slider. */
+/* Site's intentional small auxiliary text — keep smaller than body but still
+   scale with the slider so visual hierarchy survives. */
 body[data-gj-page="list"] :where(
   .tblList .modifyDate,
   .totalJobcnt,
@@ -36,22 +21,7 @@ body[data-gj-page="list"] :where(
   font-size: calc(var(--gj-font-size) * 0.8) !important;
 }
 
-/* Light theme contrast: push core body text to readable color. */
-:root[data-gj-theme="light"] body[data-gj-page="list"] :where(
-  .tblList th,
-  .tblList .tit a,
-  .tblList .tit a strong,
-  .tblList .company strong,
-  .tblList .info span,
-  .tblList .date,
-  #devSearchForm select,
-  #lnb .depth1,
-  #lnb .depth2 a
-) {
-  color: var(--gj-text) !important;
-}
-
-/* Auxiliary text stays muted-but-legible. */
+/* Auxiliary text stays muted-but-legible in the light theme. */
 :root[data-gj-theme="light"] body[data-gj-page="list"] :where(
   .tblList .modifyDate,
   .tplSlt,

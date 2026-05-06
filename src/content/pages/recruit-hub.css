@@ -1,6 +1,5 @@
 /*
- * Recruit hub (/Recruit/Main) — category navigation page styles.
- * Scope every selector under body[data-gj-page="recruit-hub"].
+ * Recruit hub (/Recruit/Main) — page-specific deltas on top of base.css globals.
  */
 
 body[data-gj-page="recruit-hub"] #lnb {
@@ -34,35 +33,5 @@ body[data-gj-page="recruit-hub"] .gj-filter::placeholder {
   color: var(--gj-text-muted);
 }
 
-/* Body text scales with the user's font-size slider. */
-body[data-gj-page="recruit-hub"] :where(
-  .titGiMain,
-  .giMenuCell .giDep1Tit,
-  .giMenuCell .giDep1Tit strong,
-  .giMenuCell ul li a,
-  .giIcoBx li a,
-  #lnb .lnbTit,
-  #lnb .depth1,
-  #lnb .depth2 a
-) {
-  font-size: var(--gj-font-size) !important;
-}
-
-/* Section titles slightly bigger than body. */
-body[data-gj-page="recruit-hub"] .titGiMain {
-  font-size: calc(var(--gj-font-size) * 1.15) !important;
-}
-
-/* Light theme contrast push for body text. */
-:root[data-gj-theme="light"] body[data-gj-page="recruit-hub"] :where(
-  .titGiMain,
-  .giMenuCell .giDep1Tit,
-  .giMenuCell .giDep1Tit strong,
-  .giMenuCell ul li a,
-  .giIcoBx li a,
-  #lnb .lnbTit,
-  #lnb .depth1,
-  #lnb .depth2 a
-) {
-  color: var(--gj-text) !important;
-}
+/* Section titles ("직종별", "게임분야별", "게임장르별") are <h3> already
+   handled by base.css's heading scale; no override needed here. */

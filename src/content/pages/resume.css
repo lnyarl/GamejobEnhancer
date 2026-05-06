@@ -1,12 +1,7 @@
 /*
- * Resume view (/User/Resume/*) styles.
- * Each `.message-content` is rebuilt into per-line flex rows so wrapped lines
- * indent under their content (hanging indent), not under the bullet/leading whitespace.
- *
- * NOTE: This page can't be reached without login, so other text regions
- * (학력/경력/자격 등) aren't audited. They currently rely on the global rule in base.css.
- * When base.css's global rule is removed, those regions may regress —
- * audit and add their selectors here at that point.
+ * Resume view (/User/Resume/*) — page-specific structure for the rebuilt
+ * .message-content blocks (hanging-indent flex rows). Typography/contrast
+ * uses base.css globals.
  */
 
 body[data-gj-page="resume"] span.message-content {
@@ -35,20 +30,4 @@ body[data-gj-page="resume"] span.message-content .gj-line__content {
   white-space: pre-wrap;
   overflow-wrap: break-word;
   word-break: keep-all;
-}
-
-/* Resume body content: scale with the user's font-size slider. */
-body[data-gj-page="resume"] :where(
-  span.message-content,
-  span.message-content .gj-line__content
-) {
-  font-size: var(--gj-font-size) !important;
-}
-
-/* Light theme contrast push for resume body content. */
-:root[data-gj-theme="light"] body[data-gj-page="resume"] :where(
-  span.message-content,
-  span.message-content .gj-line__content
-) {
-  color: var(--gj-text) !important;
 }
