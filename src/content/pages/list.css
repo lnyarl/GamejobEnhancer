@@ -1,0 +1,8 @@
+/*
+ * Job listings page (/List_Gi/*.asp, /List_GI/*.asp) styles.
+ * Scope every selector under body[data-gj-page="list"].
+ */
+
+body[data-gj-page="list"] {
+  /* Placeholder — fill in actual gamejob listing-page selectors as we audit them. */
+}

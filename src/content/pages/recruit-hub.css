@@ -1,0 +1,9 @@
+/*
+ * Recruit hub (/Recruit/Main) — category navigation page styles.
+ * Scope every selector under body[data-gj-page="recruit-hub"].
+ */
+
+body[data-gj-page="recruit-hub"] #lnb {
+  position: sticky;
+  top: 44px;
+}

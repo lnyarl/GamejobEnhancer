@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Gamejob Enhancer · 설정</title>
+  </head>
+  <body>
+    <div class="gj-shell">
+      <header class="gj-hero">
+        <h1>Gamejob Enhancer</h1>
+        <p>gamejob.co.kr UI/UX 커스터마이즈</p>
+      </header>
+
+      <main class="gj-stack">
+        <section class="gj-card">
+          <label class="gj-row gj-row--inline">
+            <span class="gj-row__label">활성화</span>
+            <input type="checkbox" id="enabled" class="gj-toggle" />
+          </label>
+        </section>
+
+        <section class="gj-card">
+          <h2 class="gj-card__title">외관</h2>
+
+          <label class="gj-row">
+            <span class="gj-row__label">테마</span>
+            <select id="theme" class="gj-select"></select>
+          </label>
+
+          <label class="gj-row">
+            <span class="gj-row__label">폰트</span>
+            <select id="fontFamily" class="gj-select"></select>
+          </label>
+
+          <label class="gj-row">
+            <span class="gj-row__label">
+              글자 크기 <span id="fontSizeValue" class="gj-row__hint">14px</span>
+            </span>
+            <input type="range" id="fontSize" class="gj-range" min="11" max="20" step="1" />
+          </label>
+        </section>
+
+        <section class="gj-card gj-card--actions">
+          <button id="reset" class="gj-btn gj-btn--ghost" type="button">기본값으로 초기화</button>
+          <p class="gj-hint">변경사항이 즉시 반영되지 않는 경우 gamejob 페이지를 새로고침하세요.</p>
+        </section>
+      </main>
+    </div>
+
+    <script type="module" src="./options.ts"></script>
+  </body>
+</html>

@@ -1,0 +1,8 @@
+/*
+ * Main page (https://www.gamejob.co.kr/, /main/*) styles.
+ * Scope every selector under body[data-gj-page="main"] so rules don't leak to other pages.
+ */
+
+body[data-gj-page="main"] {
+  /* Placeholder — fill in actual gamejob main-page selectors as we audit them. */
+}

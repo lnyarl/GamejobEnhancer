@@ -1,0 +1,33 @@
+/*
+ * Resume view (/User/Resume/*) styles.
+ * Each `.message-content` is rebuilt into per-line flex rows so wrapped lines
+ * indent under their content (hanging indent), not under the bullet/leading whitespace.
+ */
+
+body[data-gj-page="resume"] span.message-content {
+  display: block;
+}
+
+body[data-gj-page="resume"] span.message-content .gj-line {
+  display: flex;
+  align-items: baseline;
+  gap: 0.4em;
+  margin: 0;
+  padding-left: calc(var(--gj-indent-level, 0) * 1.5em);
+  min-height: 1em;
+}
+
+body[data-gj-page="resume"] span.message-content .gj-line__marker {
+  flex: 0 0 auto;
+  color: var(--gj-text-muted, currentColor);
+  font-weight: 600;
+  user-select: none;
+}
+
+body[data-gj-page="resume"] span.message-content .gj-line__content {
+  flex: 1 1 0;
+  min-width: 0;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  word-break: keep-all;
+}

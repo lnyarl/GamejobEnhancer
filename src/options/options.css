@@ -1,0 +1,147 @@
+body {
+  margin: 0;
+  font-family: var(--gj-font-family);
+  font-size: var(--gj-font-size);
+  background-color: var(--gj-bg);
+  color: var(--gj-text);
+  min-height: 100vh;
+}
+
+.gj-shell {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 48px 24px 80px;
+}
+
+.gj-hero {
+  margin-bottom: 32px;
+}
+
+.gj-hero h1 {
+  margin: 0 0 4px;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.gj-hero p {
+  margin: 0;
+  color: var(--gj-text-muted);
+  font-size: 14px;
+}
+
+.gj-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.gj-card {
+  background-color: var(--gj-surface);
+  border: 1px solid var(--gj-border);
+  border-radius: var(--gj-radius-lg);
+  padding: 20px 24px;
+  box-shadow: var(--gj-shadow-sm);
+}
+
+.gj-card__title {
+  margin: 0 0 16px;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--gj-text-muted);
+}
+
+.gj-card--actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-start;
+}
+
+.gj-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 10px 0;
+}
+
+.gj-row + .gj-row {
+  border-top: 1px solid var(--gj-border);
+}
+
+.gj-row--inline {
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0;
+}
+
+.gj-row__label {
+  font-size: 14px;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.gj-row__hint {
+  color: var(--gj-text-muted);
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.gj-select,
+.gj-range {
+  width: 100%;
+  font: inherit;
+  color: inherit;
+  background-color: var(--gj-bg);
+  border: 1px solid var(--gj-border);
+  border-radius: var(--gj-radius-sm);
+  padding: 8px 10px;
+  outline: none;
+  transition: border-color 120ms;
+}
+
+.gj-select:focus,
+.gj-range:focus {
+  border-color: var(--gj-accent);
+}
+
+.gj-toggle {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--gj-accent);
+}
+
+.gj-range {
+  padding: 0;
+  accent-color: var(--gj-accent);
+}
+
+.gj-btn {
+  font: inherit;
+  cursor: pointer;
+  padding: 8px 14px;
+  border-radius: var(--gj-radius-sm);
+  border: 1px solid var(--gj-border);
+  background-color: var(--gj-bg);
+  color: var(--gj-text);
+  transition: background-color 120ms, border-color 120ms;
+}
+
+.gj-btn:hover {
+  background-color: var(--gj-surface-hover);
+}
+
+.gj-btn--ghost {
+  background-color: transparent;
+}
+
+.gj-hint {
+  margin: 0;
+  font-size: 12px;
+  color: var(--gj-text-muted);
+}
