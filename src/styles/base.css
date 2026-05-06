@@ -21,28 +21,28 @@
 
 :root[data-gj-theme="light"] {
   --gj-bg: #ffffff;
-  --gj-surface: #f6f7f9;
-  --gj-surface-hover: #eceef2;
-  --gj-text: #1a1d23;
-  --gj-text-muted: #5b6270;
-  --gj-border: #e5e7eb;
-  --gj-accent: #3b82f6;
-  --gj-accent-hover: #2563eb;
+  --gj-surface: #f3f5f8;
+  --gj-surface-hover: #e6e9ef;
+  --gj-text: #0e1117;
+  --gj-text-muted: #404856;
+  --gj-border: #cfd3da;
+  --gj-accent: #3a5d92;
+  --gj-accent-hover: #2c4b78;
   --gj-accent-contrast: #ffffff;
-  --gj-danger: #ef4444;
+  --gj-danger: #c84444;
 }
 
 :root[data-gj-theme="dark"] {
-  --gj-bg: #14161a;
-  --gj-surface: #1c1f25;
-  --gj-surface-hover: #262a32;
-  --gj-text: #e7e9ee;
-  --gj-text-muted: #98a0ac;
-  --gj-border: #2a2e36;
-  --gj-accent: #60a5fa;
-  --gj-accent-hover: #93c5fd;
+  --gj-bg: #0f1115;
+  --gj-surface: #1a1d24;
+  --gj-surface-hover: #262a33;
+  --gj-text: #f3f5f9;
+  --gj-text-muted: #b8bfc9;
+  --gj-border: #3a4050;
+  --gj-accent: #9ebbe1;
+  --gj-accent-hover: #b8cee8;
   --gj-accent-contrast: #0b1020;
-  --gj-danger: #f87171;
+  --gj-danger: #ed9494;
 }
 
 body[data-gj-page] {
@@ -50,4 +50,38 @@ body[data-gj-page] {
   font-size: var(--gj-font-size);
   background-color: var(--gj-bg);
   color: var(--gj-text);
+}
+
+/* Force the user's font size on text elements without scaling layout.
+   Headings keep a proportional typographic scale so hierarchy survives. */
+body[data-gj-page]
+  :where(p, a, span, li, td, th, label, button, dd, dt, strong, em, b, i, small) {
+  font-size: var(--gj-font-size) !important;
+}
+body[data-gj-page] h1 { font-size: calc(var(--gj-font-size) * 1.6) !important; }
+body[data-gj-page] h2 { font-size: calc(var(--gj-font-size) * 1.35) !important; }
+body[data-gj-page] h3 { font-size: calc(var(--gj-font-size) * 1.15) !important; }
+body[data-gj-page] h4 { font-size: calc(var(--gj-font-size) * 1.05) !important; }
+body[data-gj-page] h5 { font-size: var(--gj-font-size) !important; }
+body[data-gj-page] h6 { font-size: calc(var(--gj-font-size) * 0.9) !important; }
+
+/* Don't restyle ad banner text. */
+body[data-gj-page]
+  :is(#adMainLeft, #topWrapAd, .adbannerWrap)
+  :where(p, a, span, li, h1, h2, h3, h4, h5, h6, strong, em, b, i, label, button, td, th, dd, dt, small) {
+  font-size: revert !important;
+}
+
+/* Force higher text contrast over the site's faded greys.
+   Only in light theme — dark mode would clash with the site's white background.
+   Ad areas excluded. */
+:root[data-gj-theme="light"] body[data-gj-page]
+  :where(a, p, span, li, h1, h2, h3, h4, h5, h6, strong, em, b, i, label, button, td, th, dd, dt) {
+  color: var(--gj-text) !important;
+}
+
+:root[data-gj-theme="light"] body[data-gj-page]
+  :is(#adMainLeft, #topWrapAd, .adbannerWrap)
+  :where(a, p, span, li, h1, h2, h3, h4, h5, h6, strong, em, b, i, label, button, td, th, dd, dt) {
+  color: revert !important;
 }
