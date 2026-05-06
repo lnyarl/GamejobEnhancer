@@ -1,9 +1,79 @@
 /*
  * Job listings page (/Recruit/joblist*) — page-specific deltas on top of base.css globals.
- * No font-size overrides — the site's px hierarchy stays intact.
+ * Site's typography is built around a 13px baseline. We rescale to a 15px baseline
+ * and give rows more breathing room (line-height + row padding).
  */
 
-/* Auxiliary text in light theme — keep slightly muted so visual hierarchy survives. */
+/* Body baseline (~13 → 15). */
+body[data-gj-page="list"] :where(
+  .tblList .info span,
+  #devSearchForm label,
+  #devSearchForm select,
+  #lnb .depth2 a,
+  .tabBx .tabs a
+) {
+  font-size: 15px !important;
+}
+
+/* Table column header (~12 → 14). */
+body[data-gj-page="list"] .tblList th {
+  font-size: 14px !important;
+}
+
+/* Mid-tier (~14 → 16): company name, deadline. */
+body[data-gj-page="list"] :where(
+  .tblList .company strong,
+  .tblList .date
+) {
+  font-size: 16px !important;
+}
+
+/* Headings (~16 → 18): job title, sidebar group titles. */
+body[data-gj-page="list"] :where(
+  .tblList .tit a,
+  .tblList .tit a strong,
+  #lnb .depth1
+) {
+  font-size: 18px !important;
+}
+
+/* Auxiliary captions (~12 → 13). */
+body[data-gj-page="list"] :where(
+  .tblList .modifyDate,
+  .tplSlt
+) {
+  font-size: 13px !important;
+}
+
+/* Smallest counter (~11 → 12). */
+body[data-gj-page="list"] .totalJobcnt {
+  font-size: 12px !important;
+}
+
+/* Breathing room — line-height + row padding so rows don't feel jammed. */
+body[data-gj-page="list"] .tblList {
+  line-height: 1.5;
+}
+
+body[data-gj-page="list"] .tblList tbody td {
+  padding-top: 16px !important;
+  padding-bottom: 16px !important;
+}
+
+body[data-gj-page="list"] .tblList .tit a {
+  line-height: 1.4;
+}
+
+body[data-gj-page="list"] .tblList .info {
+  margin-top: 8px !important;
+  line-height: 1.5;
+}
+
+body[data-gj-page="list"] .tblList .info span {
+  margin-right: 10px;
+}
+
+/* Auxiliary text muted in light theme — keeps visual hierarchy after sizing up. */
 :root[data-gj-theme="light"] body[data-gj-page="list"] :where(
   .tblList .modifyDate,
   .tplSlt,
@@ -31,7 +101,6 @@ body[data-gj-page="list"] article.boothList .gj-collapse-arrow {
   transition: transform 200ms ease, color 200ms ease;
 }
 
-/* Collapsed state: header gets a clear "this is folded" affordance. */
 body[data-gj-page="list"] article.boothList.gj-collapsed .gj-collapse-arrow {
   transform: rotate(-90deg);
 }
@@ -45,7 +114,6 @@ body[data-gj-page="list"] article.boothList.gj-collapsed > h3.boothTit {
   opacity: 0.85;
 }
 
-/* Hide everything in the booth except the header when collapsed. */
 body[data-gj-page="list"] article.boothList.gj-collapsed > *:not(h3.boothTit) {
   display: none !important;
 }
