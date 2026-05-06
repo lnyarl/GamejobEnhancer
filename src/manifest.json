@@ -9,6 +9,11 @@
   },
   "host_permissions": ["https://www.gamejob.co.kr/*"],
   "permissions": ["storage"],
+  "icons": {
+    "16": "src/icons/icon.png",
+    "48": "src/icons/icon.png",
+    "128": "src/icons/icon.png"
+  },
   "background": {
     "service_worker": "src/background.ts",
     "type": "module"
