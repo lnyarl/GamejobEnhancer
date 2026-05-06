@@ -9,7 +9,7 @@ export function detectPage(url: URL): PageId {
   const path = url.pathname.toLowerCase()
   if (path === '/' || path.startsWith('/main/')) return 'main'
   if (path === '/recruit/main') return 'recruit-hub'
-  if (path.startsWith('/list_gi/') || path.startsWith('/list_')) return 'list'
+  if (path.startsWith('/recruit/joblist') || path.startsWith('/list_gi/') || path.startsWith('/list_')) return 'list'
   if (path.startsWith('/user/resume/')) return 'resume'
   return 'unknown'
 }
