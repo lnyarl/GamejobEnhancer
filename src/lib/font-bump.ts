@@ -40,3 +40,46 @@ export function bumpFontSizesPageWide(
     }
   }
 }
+
+/**
+ * Force a subtree to a fixed font-size, surviving the page-wide bump and any
+ * late DOM insertions. Page modules call this from their transform() to fix
+ * areas where the bump's 14px floor breaks the site's tight fixed-width layout.
+ *
+ * Why MutationObserver: parts of the site (e.g., main page widgets) populate
+ * their list items after DOMContentLoaded. The bump runs once at mount and
+ * misses those late children, but they then *inherit* font-size from an
+ * already-bumped ancestor. Re-applying inline `!important` on every mutation
+ * keeps the pin authoritative.
+ */
+export function pinFontSize(selector: string, sizePx: number): void {
+  const apply = (root: HTMLElement): void => {
+    root.style.setProperty('font-size', `${sizePx}px`, 'important')
+    for (const child of root.querySelectorAll<HTMLElement>('*')) {
+      child.style.setProperty('font-size', `${sizePx}px`, 'important')
+    }
+  }
+
+  const watch = (root: HTMLElement): void => {
+    apply(root)
+    new MutationObserver(() => apply(root)).observe(root, {
+      childList: true,
+      subtree: true,
+    })
+  }
+
+  const initial = document.querySelectorAll<HTMLElement>(selector)
+  if (initial.length > 0) {
+    for (const root of initial) watch(root)
+    return
+  }
+
+  // Selector not in DOM yet — wait for it to appear, then attach the subtree watcher.
+  const bodyObs = new MutationObserver(() => {
+    const found = document.querySelectorAll<HTMLElement>(selector)
+    if (found.length === 0) return
+    for (const root of found) watch(root)
+    bodyObs.disconnect()
+  })
+  bodyObs.observe(document.body, { childList: true, subtree: true })
+}
